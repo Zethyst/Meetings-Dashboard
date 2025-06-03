@@ -29,7 +29,8 @@ A sleek and modern web app to manage, track, and schedule all your meetings in o
 ## 📌 Screenshots:
 
 > **Home Page**  
-> ![Home](./src/./assets/Home.png)
+> ![Home](./img/home.png)
+> ![Login](./img/login.png)
 
 ## 🚀 Getting Started:
 
