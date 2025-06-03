@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
-
+import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -27,7 +28,7 @@ SECRET_KEY = "django-insecure--rqt5hx8o6i90=yqghagw5(5-r_ie%a7ethov%*5%3hpuq&)5-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-app-name.onrender.com']
+ALLOWED_HOSTS = ['ume-app-assignment.onrender.com',"127.0.0.1"]
 
 # Application definition
 
@@ -59,8 +60,9 @@ SIMPLE_JWT = {
 }
 CORS_ALLOWED_ORIGINS = [
     " http://localhost:5173",  # React dev server
-    "https://yourfrontenddomain.com",
+    "https://ume-app-assignment.vercel.app",
 ]
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",

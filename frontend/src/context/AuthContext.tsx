@@ -104,20 +104,24 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
-        { name, email, password }
-      );
-      localStorage.setItem("token", res.data.token);
-      setToken(res.data.token);
-      setUser(res.data.user);
-      setIsAuthenticated(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ const register = async (username: string, email: string, password: string) => {
+  try {
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/register/`,
+      { username, email, password }
+    );
+
+    const token = res.data.token;
+    localStorage.setItem("token", token);
+    setToken(token);
+    setIsAuthenticated(true);
+    setUser(res.data.user);
+  } catch (err) {
+    console.error("Registration failed:", err);
+    throw err;
+  }
+};
+
 
   const logout = () => {
     localStorage.removeItem("token");

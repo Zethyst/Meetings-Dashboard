@@ -5,30 +5,30 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const { login } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
-const handleSubmit = async () => {
-  await toast.promise(
-    login(username, password),
-    {
-      loading: 'Logging in...',
-      success: 'Logged in successfully!',
-      error: 'Invalid username or password',
-    }
-  ).then(() => {
-    navigate('/');
-  }).catch((error) => {
-    console.error("Login failed", error);
-  });
-};
-
+  const handleSubmit = async () => {
+    await toast
+      .promise(register(username, email, password), {
+        loading: "Signing up...",
+        success: "Signed up successfully!",
+        error: "Invalid username or password",
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Sign up failed", error);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 flex items-center justify-center p-4">
@@ -45,10 +45,6 @@ const handleSubmit = async () => {
             </div>
             <span className="text-2xl font-bold text-gray-800">ToDoi</span>
           </div>
-          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-            Welcome back
-          </h1>
-          <p className="text-gray-600">Sign in to your account to continue</p>
         </div>
 
         <div className="space-y-6">
@@ -70,6 +66,28 @@ const handleSubmit = async () => {
                 onChange={(e) => setUsername(e.target.value)}
                 className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                 placeholder="Enter your username"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="text"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Email
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Mail className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                id="email"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -137,7 +155,7 @@ const handleSubmit = async () => {
             onClick={handleSubmit}
             className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
           >
-            Sign in
+            Sign up
           </button>
         </div>
 
@@ -185,9 +203,9 @@ const handleSubmit = async () => {
 
         <div className="text-center">
           <span className="text-sm text-gray-600">
-            Don't have an account?{" "}
-            <button onClick={()=>navigate("/register")} className="text-purple-600 hover:text-purple-700 font-medium">
-              Sign up
+            Already have an account?{" "}
+            <button onClick={()=>navigate("/login")} className="text-purple-600 hover:text-purple-700 font-medium">
+              Sign in
             </button>
           </span>
         </div>

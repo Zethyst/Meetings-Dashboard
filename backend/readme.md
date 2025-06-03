@@ -18,6 +18,7 @@ This is the Django backend for the **Meetings Dashboard** Meetings app. It provi
 - 🔒 RESTful API ready for frontend integration
 - 🗃️ SQLite for lightweight and fast development
 - 🚀 Easy to deploy and scale with Django
+postgresql://zivanika:ZRDhBcy5vtZA5IF9O4A6r8lcjQMiTy2A@dpg-d0vc957diees73co1mf0-a.oregon-postgres.render.com/zivanikadb
 
 ---
 
