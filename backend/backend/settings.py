@@ -61,6 +61,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     " http://localhost:5173",  # React dev server
     "https://meetings-dashboard-wvzj.vercel.app",
+    "https://meetings-dashboard.vercel.app"
 ]
 
 MIDDLEWARE = [
